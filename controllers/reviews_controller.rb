@@ -50,18 +50,26 @@ class ReviewsController < Sinatra::Base
     
   put '/:id'  do
     id = params[:id].to_i
-
+    title = params[:title]
+    body = params[:body]
+    description = params[:description]
+    developer = params[:developer]  
+    Review.find_and_update(id, title, body, description)  
     redirect "/"
   end
     
   delete '/:id'  do
     id = params[:id].to_i
-    
+    Review.destroy id
+    redirect"/"    
   end
 
     
   get '/:id/edit'  do
-  
+    id = params[:id].to_i
+    @review = Review.find id
+    
+    erb :"reviews/edit"
   end
 
 
