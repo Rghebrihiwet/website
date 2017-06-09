@@ -1,0 +1,10 @@
+<form method="review" action="/<%=@review.id%>">
+ <input type="hidden" name="_method" value= "put">   
+ <label for="title"></label>
+    <input type="text" name="title" value="<%= @review.title %>">
+
+    <label for="body"></label>
+    <textarea name="body"><%= @review.body %></textarea>
+
+    <input type="submit" value="Submit">
+</form>

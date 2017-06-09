@@ -1,0 +1,9 @@
+
+<h1>Welcome to the homepage</h1>
+
+<% @reviews.each do |review| %>
+<div>
+  <h3><a href="/<%= review.id %>"><%= review.title %></a></h3>
+  <p><%= review.body %></p>
+</div>
+<% end %>
