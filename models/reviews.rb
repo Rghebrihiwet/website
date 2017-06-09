@@ -21,6 +21,8 @@ class Review
     # INDEX
     def self.all
         conn = self.open_connection
+        sql = "SELECT game_id,price,title,age_require,release_date,description,developer FROM games ORDER BY game_id"
+        results = conn.exec(sql)
 
     reviews = results.map do |tuple| 
         self.hydrate tuple
@@ -31,8 +33,9 @@ class Review
 
     def self.find id
         conn = self.open_connection
-   
-
+        sql = "SELECT game_id, price, title, age_require, release_date, description, developer FROM games WHERE game_id = #{game_id}"
+        results = conn.exec(sql)
+        
         self.hydrate results.first
     end
 
