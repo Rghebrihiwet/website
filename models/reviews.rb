@@ -35,24 +35,32 @@ class Review
         conn = self.open_connection
         sql = "SELECT game_id, price, title, age_require, release_date, description, developer FROM games WHERE game_id = #{game_id}"
         results = conn.exec(sql)
-        
+
         self.hydrate results.first
     end
 
     def save
         conn = Review.open_connection
-    conn.exec(sql)
+        sql = "INSERT INTO review ( game_id, price, title, age_require, release_date, description, developer) VALUES ( '#{self.game_id}', '#{self.price}', '#{self.title}', '#{self.age_require}', '#{self.release_date}', '#{self.description}','#{self.developer}' )"
+        conn.exec(sql)
     end
 
     def update
-
+        conn = Review.open_connection
+        sql = "UPDATE review SET game_id='#{self.game_id}', price='#{self.price}', age_require='#{self.age_require}'' , title='#{self.title}' , price='#{self. price}' , game_id='#{self.game_id}' , description='#{self.description}' WHERE game_id='#{self.game_id}' "
+        conn.exec(sql)
+    end
 
   def self.find_and_update game_id, price, title, age_require, release_date, description, developer, 
-
+      conn = self.open_connection
+      sql = "UPDATE review SET game_id='#{game_id}', price='#{price}', age_require='#{age_require}', title='#{title}', release_date='#{release_date}', description='#{description}', developer='#{developer}' WHERE game_id=#{game_id}"
+      results = conn.exec(sql)
   end
 
   def self.destroy id
-
+      conn = self.open_connection
+      sql = "DELETE FROM review WHERE game_id = #{game_id}"
+      conn.exec(sql)
   end
 
 end
